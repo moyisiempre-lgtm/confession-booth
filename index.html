@@ -19,24 +19,24 @@ html, body { width: 100%; height: 100%; background: #000; overflow: hidden; font
 .top-credit a { color: var(--gold); text-decoration: none; opacity: 0.7; transition: opacity 0.3s; cursor: pointer; }
 .top-credit a:hover { opacity: 1; text-shadow: 0 0 8px var(--gold); }
 
-/* --- 右下角 Info 悬浮按钮 (优化版) --- */
+/* --- 右下角 Info 悬浮按钮 --- */
 .info-btn { position: fixed; bottom: 30px; right: 40px; width: 24px; height: 24px; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; display: flex; align-items: center; justify-content: center; z-index: 100; cursor: help; pointer-events: auto; transition: all 0.3s ease; opacity: 0.5; }
 .info-btn:hover { opacity: 1; background: rgba(201,168,76,0.1); box-shadow: 0 0 10px rgba(201,168,76,0.2); }
 .info-tooltip { position: absolute; bottom: 35px; right: 0; background: rgba(0,0,0,0.7); padding: 10px 15px; color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; line-height: 1.6; text-align: right; white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.3s ease; transform: translateY(10px); backdrop-filter: blur(4px); border-radius: 4px; border: none; }
 .info-btn:hover .info-tooltip { opacity: 1; transform: translateY(0); }
 
 /* --- 屏幕管理 --- */
-.screen { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 2s ease-in-out; z-index: 10; }
+.screen { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 2s ease-in-out; z-index: 10; padding: 0 24px; }
 .screen.active { opacity: 1; pointer-events: auto; }
 
 /* --- 文本与按钮 --- */
 .cine-text { color: var(--gold); font-size: 2.5rem; font-style: italic; letter-spacing: 0.1em; text-shadow: 0 0 20px rgba(201,168,76,0.6); text-align: center; }
-.cine-sub { font-size: 1.8rem; margin-top: 20px; font-style: italic; opacity: 0.9; }
+.cine-sub { font-size: 1.8rem; margin-top: 20px; font-style: italic; opacity: 0.9; text-align: center; max-width: 800px; }
 
 .btn { padding: 15px 40px; background: transparent; border: 1px solid var(--gold); color: var(--gold); font-family: 'Cinzel', serif; font-size: 1.2rem; letter-spacing: 0.2em; transition: all 0.4s ease; text-transform: uppercase; cursor: crosshair; outline: none; }
 .btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px rgba(201,168,76,0.5); }
 
-.choice-box { display: flex; gap: 30px; margin-top: 40px; }
+.choice-box { display: flex; gap: 30px; margin-top: 40px; flex-wrap: wrap; justify-content: center; }
 .choice-btn { padding: 12px 30px; background: rgba(0,0,0,0.6); border: 1px solid rgba(201,168,76,0.4); color: var(--cream); font-family: 'Cinzel', serif; font-size: 1rem; transition: 0.4s; backdrop-filter: blur(4px); cursor: crosshair; }
 .choice-btn:hover { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 15px rgba(201,168,76,0.3); transform: translateY(-2px); }
 
@@ -59,6 +59,7 @@ html, body { width: 100%; height: 100%; background: #000; overflow: hidden; font
 #confInput { width: 80%; max-width: 700px; background: transparent; border: none; border-bottom: 1px solid rgba(201,168,76,0.3); color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; text-align: center; padding: 15px; outline: none; transition: border 0.3s; margin-top: 40px; cursor: crosshair; }
 #confInput:focus { border-bottom: 1px solid var(--gold); }
 #confInput::placeholder { color: rgba(240,232,216,0.2); }
+.privacy-note { margin-top: 24px; font-size: 0.95rem; font-style: italic; color: rgba(240,232,216,0.4); text-align: center; letter-spacing: 0.05em; }
 
 #star-layer { position: absolute; inset: 0; z-index: 30; pointer-events: none; background: rgba(0,0,0,0.8); opacity: 0; transition: opacity 2s; }
 .star-word { position: absolute; color: var(--gold); font-size: 2.5rem; font-style: italic; opacity: 0; transform: translate(-50%, -50%) scale(1); text-shadow: 0 0 15px rgba(201,168,76,0.8); transition: opacity 1s, transform 3s cubic-bezier(0.25, 1, 0.5, 1), left 3s ease, top 3s ease, filter 3s ease; }
@@ -66,16 +67,16 @@ html, body { width: 100%; height: 100%; background: #000; overflow: hidden; font
 .star-word.scatter { transform: translate(-50%, -50%) scale(0.8); filter: blur(1.5px) brightness(1.2); opacity: 0.6 !important; }
 .star-word.converge { left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) scale(3) !important; filter: brightness(8) blur(3px) !important; opacity: 1 !important; transition: left 1.5s cubic-bezier(0.8, 0, 0.2, 1), top 1.5s cubic-bezier(0.8, 0, 0.2, 1), transform 1.5s ease-in, filter 1.5s ease-in !important; }
 
-/* --- AI 回应专属样式 --- */
+/* --- 回应样式 --- */
 #screen-response {
-  z-index: 40; 
+  z-index: 40;
   background: radial-gradient(circle at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
 }
-#response-text { 
-  font-size: 2.8rem; 
-  font-weight: 400; 
-  color: var(--cream); 
-  text-shadow: 0 0 15px rgba(201,168,76,0.6), 0 0 30px rgba(201,168,76,0.2); 
+#response-text {
+  font-size: 2.8rem;
+  font-weight: 400;
+  color: var(--cream);
+  text-shadow: 0 0 15px rgba(201,168,76,0.6), 0 0 30px rgba(201,168,76,0.2);
   max-width: 900px;
 }
 
@@ -84,17 +85,21 @@ html, body { width: 100%; height: 100%; background: #000; overflow: hidden; font
 #final-img-wrap { position: absolute; inset: 0; background: url('background.png') center/cover no-repeat; opacity: 0; transform: scale(0.9); transition: opacity 3s ease-out, transform 4s ease-out; filter: brightness(0.6); }
 #final-img-wrap.show { opacity: 1; transform: scale(1); }
 
-/* 最终结语 */
 .final-text { position: relative; font-family: 'Cormorant Garamond', serif; color: var(--cream); font-size: 2.5rem; font-style: italic; text-align: center; text-shadow: 0 0 20px #000, 0 0 40px #000; opacity: 0; transition: opacity 2s; z-index: 51; margin-bottom: 50px; }
 .final-text.show { opacity: 1; }
 
-/* 重新刷新按钮 */
 #restart-btn { position: relative; opacity: 0; pointer-events: none; transform: translateY(20px); transition: opacity 2s, transform 2s; z-index: 52; }
 #restart-btn.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
-/* 最终的渐隐全黑场 */
 #fade-black { position: fixed; inset: 0; background: #000; opacity: 0; pointer-events: none; z-index: 9999; transition: opacity 3s ease; }
 #fade-black.active { opacity: 1; pointer-events: auto; }
+
+@media (max-width: 640px) {
+  .cine-text { font-size: 1.8rem; }
+  .cine-sub { font-size: 1.4rem; }
+  #response-text, .final-text { font-size: 1.8rem; }
+  .top-title { font-size: 0.9rem; }
+}
 </style>
 </head>
 <body>
@@ -109,7 +114,7 @@ html, body { width: 100%; height: 100%; background: #000; overflow: hidden; font
 <div class="top-ui">
   <div class="top-title">Confession Booth for Atheists</div>
   <div class="top-credit">
-    Made by: 
+    Made by:
     <a href="https://www.linkedin.com/in/evanna-shen" target="_blank">Evanna Shen</a>
   </div>
 </div>
@@ -117,7 +122,7 @@ html, body { width: 100%; height: 100%; background: #000; overflow: hidden; font
 <div class="info-btn">
   i
   <div class="info-tooltip">
-    Music Instrumental by Hawonce & Safe Sound Sector<br>
+    Music Instrumental by Hawonce &amp; Safe Sound Sector<br>
     Image generated by Gemini
   </div>
 </div>
@@ -134,25 +139,28 @@ html, body { width: 100%; height: 100%; background: #000; overflow: hidden; font
 </div>
 
 <div id="screen-phase1" class="screen">
-  <div class="cine-text">hold out your hands for me</div>
+  <div class="cine-text">be still, and breathe</div>
 </div>
 
+<!-- 第二幕：选择想要忏悔的类型（替代原来的年龄选择） -->
 <div id="screen-phase2" class="screen">
-  <div class="cine-text">You are?</div>
+  <div class="cine-text">What weighs on you?</div>
   <div class="choice-box">
-    <button class="choice-btn" data-choice="underage">I'm underage</button>
-    <button class="choice-btn" data-choice="18plus">I'm 18+</button>
+    <button class="choice-btn" data-choice="did">Something I did</button>
+    <button class="choice-btn" data-choice="undone">Something I left undone</button>
+    <button class="choice-btn" data-choice="carry">Something I carry</button>
   </div>
 </div>
 
 <div id="screen-phase3" class="screen">
-  <div class="cine-text">say the prayer with me:</div>
+  <div class="cine-text">speak this with me:</div>
   <div id="prayer-text" class="cine-sub"></div>
 </div>
 
 <div id="screen-input" class="screen">
   <div class="cine-text">tell me about your confession</div>
   <input type="text" id="confInput" placeholder="Press Enter when finished..." autocomplete="off">
+  <div class="privacy-note">What you write is kept anonymously. Please do not include names or personal details.</div>
 </div>
 
 <div id="screen-response" class="screen">
@@ -168,8 +176,39 @@ html, body { width: 100%; height: 100%; background: #000; overflow: hidden; font
 <div id="fade-black"></div>
 
 <script>
-// --- 全局变量记录用户的选择 ---
+// --- 全局变量记录用户选择的类别 ---
 let userChoice = "unknown";
+
+// 每个类别对应的祷词与回应
+const CONTENT = {
+  did: {
+    label: "Something I did",
+    prayer: "I acknowledge what I have done, and I am ready to be honest.",
+    responses: [
+      "To name what you have done is already the first step toward carrying it differently.",
+      "What is done cannot be undone, but it need not define everything that comes after.",
+      "Honesty with yourself is a quiet form of courage. You have shown it tonight."
+    ]
+  },
+  undone: {
+    label: "Something I left undone",
+    prayer: "I acknowledge what I left undone, and I am ready to be honest.",
+    responses: [
+      "What was left undone is not always lost. Some doors stay open longer than we think.",
+      "Regret for what you did not do is a sign of how much it mattered to you.",
+      "It is not too late to begin again, even if only in small ways."
+    ]
+  },
+  carry: {
+    label: "Something I carry",
+    prayer: "I acknowledge what I carry, and I am ready to set it down.",
+    responses: [
+      "You do not have to carry this alone. Speaking it aloud makes it lighter.",
+      "Some burdens ease only when they are named. You have named yours.",
+      "Rest here for a moment. The weight will still be there, but you are not alone with it."
+    ]
+  }
+};
 
 // --- 1. 鼠标轨迹 ---
 const canvas = document.getElementById('trail-canvas');
@@ -220,12 +259,10 @@ document.getElementById('startBtn').addEventListener('click', async () => {
 
 document.querySelectorAll('.choice-btn').forEach(btn => {
   btn.addEventListener('click', async (e) => {
-    const choice = e.target.getAttribute('data-choice');
-    
-    // 记录用户的年龄选项，以便之后存入数据库
-    userChoice = choice === 'underage' ? "Underage" : "18+";
-    
-    document.getElementById('prayer-text').innerText = choice === 'underage' ? "forgive me father for I have sinned." : "sorry daddy, I've been bad.";
+    const choice = e.currentTarget.getAttribute('data-choice');
+    userChoice = choice;
+
+    document.getElementById('prayer-text').innerText = CONTENT[choice].prayer;
     hide('screen-phase2'); await delay(2000);
     show('screen-phase3'); await delay(5000); hide('screen-phase3'); await delay(2000);
     initRealWorld(); show('screen-input');
@@ -236,7 +273,7 @@ document.querySelectorAll('.choice-btn').forEach(btn => {
 // --- 将数据保存到 SheetDB 的函数 ---
 async function saveToDatabase(confessionText, choice) {
   try {
-    const dbUrl = "https://sheetdb.io/api/v1/7d9ayx1cfa92o"; 
+    const dbUrl = "https://sheetdb.io/api/v1/7d9ayx1cfa92o";
     await fetch(dbUrl, {
       method: 'POST',
       headers: {
@@ -246,7 +283,7 @@ async function saveToDatabase(confessionText, choice) {
       body: JSON.stringify({
         data: {
           "Date": new Date().toLocaleString(),
-          "Type": choice,
+          "Type": CONTENT[choice] ? CONTENT[choice].label : choice,
           "Confession": confessionText
         }
       })
@@ -259,13 +296,13 @@ async function saveToDatabase(confessionText, choice) {
 
 document.getElementById('confInput').addEventListener('keydown', async (e) => {
   if (e.key === 'Enter' && e.target.value.trim() !== '') {
-    const text = e.target.value.trim(); 
-    hide('screen-input'); 
-    
+    const text = e.target.value.trim();
+    hide('screen-input');
+
     // 静默保存到数据库（不会卡住画面）
     saveToDatabase(text, userChoice);
-    
-    await delay(1500); 
+
+    await delay(1500);
     runStarSea(text);
   }
 });
@@ -284,29 +321,23 @@ async function runStarSea(text) {
 }
 
 async function showAIResponse(starElements) {
-  const responses = [
-    "Your burdens are yours alone to bear, yet the night accepts them without judgment.",
-    "A heavy truth, spoken to the dust; let the wind carry what your shoulders cannot.",
-    "There is no scale here to weigh your guilt, only the quiet understanding of the void.",
-    "The shadows do not ask for penance, they only listen and swallow your regret.",
-    "You are forgiven by the only judge that remains: the passage of time itself."
-  ];
-  document.getElementById('response-text').innerText = responses[Math.floor(Math.random() * responses.length)];
-  
+  const pool = (CONTENT[userChoice] || CONTENT.carry).responses;
+  document.getElementById('response-text').innerText = pool[Math.floor(Math.random() * pool.length)];
+
   show('screen-response');
-  await delay(8000); 
+  await delay(8000);
   hide('screen-response');
-  
-  await delay(1000); 
+
+  await delay(1000);
   starElements.forEach(el => { el.classList.remove('scatter'); el.classList.add('converge'); });
-  await delay(1500); 
+  await delay(1500);
   document.getElementById('star-layer').style.opacity = '0';
-  
+
   show('screen-final');
   document.getElementById('final-img-wrap').classList.add('show');
-  await delay(1500); 
+  await delay(1500);
   document.getElementById('final-text-line').classList.add('show');
-  
+
   await delay(3000);
   document.getElementById('restart-btn').classList.add('show');
 }
@@ -315,17 +346,17 @@ async function showAIResponse(starElements) {
 document.getElementById('restart-btn').addEventListener('click', async () => {
   document.getElementById('restart-btn').style.pointerEvents = 'none';
   document.getElementById('restart-btn').style.opacity = '0';
-  
+
   document.getElementById('fade-black').classList.add('active');
-  
-  const audio = document.getElementById('holyMusic'); 
+
+  const audio = document.getElementById('holyMusic');
   let vol = audio.volume;
   const fadeOutInterval = setInterval(() => {
-    vol -= 0.02; 
-    if (vol <= 0) { 
-      audio.pause(); 
-      audio.volume = 0; 
-      clearInterval(fadeOutInterval); 
+    vol -= 0.02;
+    if (vol <= 0) {
+      audio.pause();
+      audio.volume = 0;
+      clearInterval(fadeOutInterval);
     } else {
       audio.volume = vol;
     }
